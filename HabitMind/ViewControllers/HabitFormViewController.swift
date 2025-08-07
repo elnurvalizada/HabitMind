@@ -254,7 +254,6 @@ class HabitFormViewController: RootViewController {
         
         HabitDataManager.shared.saveHabit(habit)
         onHabitSaved?()
-        print(HabitDataManager.shared.getAllHabits())
         dismiss(animated: true)
     }
     
