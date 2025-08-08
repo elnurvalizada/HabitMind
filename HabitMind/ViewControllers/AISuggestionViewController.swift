@@ -153,58 +153,17 @@ class AISuggestionViewController: RootViewController {
     }
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            // Container View
-            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            containerView.heightAnchor.constraint(lessThanOrEqualTo: view.heightAnchor, multiplier: 0.8),
-            
-            // Header
-            headerView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
-            headerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            headerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            
-            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            subtitleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            subtitleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            subtitleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-            
-            // Suggestion Card
-            suggestionCard.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 24),
-            suggestionCard.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            suggestionCard.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            
-            suggestionTitleLabel.topAnchor.constraint(equalTo: suggestionCard.topAnchor, constant: 20),
-            suggestionTitleLabel.leadingAnchor.constraint(equalTo: suggestionCard.leadingAnchor, constant: 20),
-            suggestionTitleLabel.trailingAnchor.constraint(equalTo: suggestionCard.trailingAnchor, constant: -20),
-            
-            suggestionDescriptionLabel.topAnchor.constraint(equalTo: suggestionTitleLabel.bottomAnchor, constant: 12),
-            suggestionDescriptionLabel.leadingAnchor.constraint(equalTo: suggestionCard.leadingAnchor, constant: 20),
-            suggestionDescriptionLabel.trailingAnchor.constraint(equalTo: suggestionCard.trailingAnchor, constant: -20),
-            
-            categoryLabel.topAnchor.constraint(equalTo: suggestionDescriptionLabel.bottomAnchor, constant: 16),
-            categoryLabel.leadingAnchor.constraint(equalTo: suggestionCard.leadingAnchor, constant: 20),
-            
-            difficultyLabel.topAnchor.constraint(equalTo: suggestionDescriptionLabel.bottomAnchor, constant: 16),
-            difficultyLabel.trailingAnchor.constraint(equalTo: suggestionCard.trailingAnchor, constant: -20),
-            difficultyLabel.bottomAnchor.constraint(equalTo: suggestionCard.bottomAnchor, constant: -20),
-            
-            // Buttons
-            addHabitButton.topAnchor.constraint(equalTo: suggestionCard.bottomAnchor, constant: 24),
-            addHabitButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            addHabitButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            addHabitButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            dismissButton.topAnchor.constraint(equalTo: addHabitButton.bottomAnchor, constant: 12),
-            dismissButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            dismissButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24)
-        ])
+        containerView.setConstraints(leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, centerYAnchor: view.centerYAnchor, centerXAnchor: view.centerXAnchor, leadingConstant: 20, trailingConstant: -20, heightAnchor: view.heightAnchor, heightAnchorConstant: -0.2)
+        headerView.setConstraints(topAnchor: containerView.topAnchor, leadingAnchor: containerView.leadingAnchor, trailingAnchor: containerView.trailingAnchor, topConstant: 24, leadingConstant: 24, trailingConstant: -24)
+        titleLabel.setConstraints(topAnchor: headerView.topAnchor, leadingAnchor: headerView.leadingAnchor, trailingAnchor: headerView.trailingAnchor)
+        subtitleLabel.setConstraints(topAnchor: titleLabel.bottomAnchor, bottomAnchor: headerView.bottomAnchor, leadingAnchor: headerView.leadingAnchor, trailingAnchor: headerView.trailingAnchor, topConstant: 8)
+        suggestionCard.setConstraints(topAnchor: headerView.bottomAnchor, leadingAnchor: containerView.leadingAnchor, trailingAnchor: containerView.trailingAnchor, topConstant: 24, leadingConstant: 24, trailingConstant: -24)
+        suggestionTitleLabel.setConstraints(topAnchor: suggestionCard.topAnchor, leadingAnchor: suggestionCard.leadingAnchor, trailingAnchor: suggestionCard.trailingAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: -20)
+        suggestionDescriptionLabel.setConstraints(topAnchor: suggestionTitleLabel.bottomAnchor, leadingAnchor: suggestionCard.leadingAnchor, trailingAnchor: suggestionCard.trailingAnchor, topConstant: 12, leadingConstant: 20, trailingConstant: -20)
+        categoryLabel.setConstraints(topAnchor: suggestionDescriptionLabel.bottomAnchor, leadingAnchor: suggestionCard.leadingAnchor, topConstant: 16, leadingConstant: 20)
+        difficultyLabel.setConstraints(topAnchor: suggestionDescriptionLabel.bottomAnchor, bottomAnchor: suggestionCard.bottomAnchor, trailingAnchor: suggestionCard.trailingAnchor, topConstant: 16, bottomConstant: -20, trailingConstant: -20)
+        addHabitButton.setConstraints(topAnchor: suggestionCard.bottomAnchor, leadingAnchor: containerView.leadingAnchor, trailingAnchor: containerView.trailingAnchor, topConstant: 24, leadingConstant: 24, trailingConstant: -24, height: 50)
+        dismissButton.setConstraints(topAnchor: addHabitButton.bottomAnchor, bottomAnchor: containerView.bottomAnchor, centerXAnchor: containerView.centerXAnchor, topConstant: 12, bottomConstant: -24)
     }
     
     private func configureWithSuggestion() {

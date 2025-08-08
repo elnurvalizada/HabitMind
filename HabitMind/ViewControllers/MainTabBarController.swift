@@ -73,10 +73,7 @@ class StatisticsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        label.setConstraints(centerYAnchor: view.centerYAnchor, centerXAnchor: view.centerXAnchor)
     }
 }
 
@@ -94,9 +91,6 @@ class SettingsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        label.setConstraints(centerYAnchor: view.centerYAnchor, centerXAnchor: view.centerXAnchor)
     }
 } 

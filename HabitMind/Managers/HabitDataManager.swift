@@ -13,7 +13,7 @@ class HabitDataManager {
     private let fileName = "habits.json"
     private let fileManager = FileManager.default
     private var fileURL: URL {
-        let bundleURL = Bundle.main.url(forResource: "habits_50", withExtension: "json")
+        let bundleURL = Bundle.main.url(forResource: "habits", withExtension: "json")
         let docsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let destURL = docsURL.appendingPathComponent(fileName)
         // Copy from bundle to documents if not present

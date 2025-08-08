@@ -154,71 +154,18 @@ class HabitFormViewController: RootViewController {
     }
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            // ScrollView
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            // ContentView
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            // Name TextField
-            nameTextField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            nameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            nameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            nameTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            // Category TextField
-            categoryTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
-            categoryTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            categoryTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            categoryTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            // Time Picker
-            timePickerView.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor, constant: 20),
-            timePickerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            timePickerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            timePickerView.heightAnchor.constraint(equalToConstant: 200),
-            
-            // Day Selector
-            daySelectorView.topAnchor.constraint(equalTo: timePickerView.bottomAnchor, constant: 20),
-            daySelectorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            daySelectorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            daySelectorView.heightAnchor.constraint(equalToConstant: 70),
-            
-            // Target Value Section
-            targetValueLabel.topAnchor.constraint(equalTo: daySelectorView.bottomAnchor, constant: 30),
-            targetValueLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            
-            targetValueStepper.topAnchor.constraint(equalTo: targetValueLabel.bottomAnchor, constant: 16),
-            targetValueStepper.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            
-            targetValueDisplayLabel.centerYAnchor.constraint(equalTo: targetValueStepper.centerYAnchor),
-            targetValueDisplayLabel.leadingAnchor.constraint(equalTo: targetValueStepper.trailingAnchor, constant: 20),
-            targetValueDisplayLabel.widthAnchor.constraint(equalToConstant: 60),
-            
-            targetValueDescriptionLabel.topAnchor.constraint(equalTo: targetValueStepper.bottomAnchor, constant: 8),
-            targetValueDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            targetValueDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            
-            // Buttons
-            saveButton.topAnchor.constraint(equalTo: targetValueDescriptionLabel.bottomAnchor, constant: 40),
-            saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            saveButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            cancelButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 16),
-            cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            cancelButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            cancelButton.heightAnchor.constraint(equalToConstant: 50),
-            cancelButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
-        ])
+        scrollView.setConstraints(topAnchor: view.safeAreaLayoutGuide.topAnchor, bottomAnchor: view.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
+        contentView.setConstraints(topAnchor: scrollView.topAnchor, bottomAnchor: scrollView.bottomAnchor, leadingAnchor: scrollView.leadingAnchor, trailingAnchor: scrollView.trailingAnchor, widthAnchor: scrollView.widthAnchor)
+        nameTextField.setConstraints(topAnchor: contentView.topAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: -20, height: 50)
+        categoryTextField.setConstraints(topAnchor: nameTextField.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: -20, height: 50)
+        timePickerView.setConstraints(topAnchor: categoryTextField.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: -20, height: 200)
+        daySelectorView.setConstraints(topAnchor: timePickerView.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 20, leadingConstant: 20, trailingConstant: -20, height: 70)
+        targetValueLabel.setConstraints(topAnchor: daySelectorView.bottomAnchor, leadingAnchor: contentView.leadingAnchor, topConstant: 30, leadingConstant: 20)
+        targetValueStepper.setConstraints(topAnchor: targetValueLabel.bottomAnchor, leadingAnchor: contentView.leadingAnchor, topConstant: 16, leadingConstant: 20)
+        targetValueDisplayLabel.setConstraints(leadingAnchor: targetValueStepper.trailingAnchor, centerYAnchor: targetValueStepper.centerYAnchor, leadingConstant: 20, width: 60)
+        targetValueDescriptionLabel.setConstraints(topAnchor: targetValueStepper.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 8, leadingConstant: 20, trailingConstant: -20)
+        saveButton.setConstraints(topAnchor: targetValueDescriptionLabel.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 40, leadingConstant: 20, trailingConstant: -20, height: 50)
+        cancelButton.setConstraints(topAnchor: saveButton.bottomAnchor, bottomAnchor: contentView.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 16, bottomConstant: -20, leadingConstant: 20, trailingConstant: -20, height: 50)
     }
     
     private func setupActions() {

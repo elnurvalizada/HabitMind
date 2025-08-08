@@ -94,17 +94,8 @@ class HabitListViewController: RootViewController {
         tableView.dataSource = self
         tableView.register(HabitTableViewCell.self, forCellReuseIdentifier: "HabitCardCell")
         
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            emptyStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
+        tableView.setConstraints(topAnchor: view.safeAreaLayoutGuide.topAnchor, bottomAnchor: view.bottomAnchor, leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor)
+        emptyStateView.setConstraints(leadingAnchor: view.leadingAnchor, trailingAnchor: view.trailingAnchor, centerYAnchor: view.centerYAnchor, centerXAnchor: view.centerXAnchor, leadingConstant: 20, trailingConstant: -20)
     }
     
     private func setupSearchController() {
@@ -341,12 +332,7 @@ class HabitTableViewCell: UITableViewCell {
         
         contentView.addSubview(habitCard)
         
-        NSLayoutConstraint.activate([
-            habitCard.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            habitCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            habitCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            habitCard.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
-        ])
+        habitCard.setConstraints(topAnchor: contentView.topAnchor, bottomAnchor: contentView.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, topConstant: 8, bottomConstant: -8, leadingConstant: 16, trailingConstant: -16)
     }
     
     func configure(with habit: Habit, onCompletionToggled: @escaping (Habit, Bool) -> Void) {
