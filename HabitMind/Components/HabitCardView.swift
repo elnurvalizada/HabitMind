@@ -144,8 +144,8 @@ class HabitCardView: UIView {
     }
     
     private func setupConstraints() {
-        progressRingWidthConstraint = progressRing.widthAnchor.constraint(equalToConstant: 72)
-        progressRingHeightConstraint = progressRing.heightAnchor.constraint(equalToConstant: 72)
+        progressRingWidthConstraint = progressRing.widthAnchor.constraint(equalToConstant: 84)
+        progressRingHeightConstraint = progressRing.heightAnchor.constraint(equalToConstant: 84)
         NSLayoutConstraint.activate([
             // Container
             containerView.topAnchor.constraint(equalTo: topAnchor),
