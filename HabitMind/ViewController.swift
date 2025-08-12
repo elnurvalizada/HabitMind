@@ -25,11 +25,7 @@ class ViewController: UIViewController {
         card.translatesAutoresizingMaskIntoConstraints = false
         return card
     }()
-    private let aiCard: AISuggestionCardView = {
-        let card = AISuggestionCardView()
-        card.translatesAutoresizingMaskIntoConstraints = false
-        return card
-    }()
+    
     private let button: CustomButton = {
         let button = CustomButton(title: "Save Habit", style: .primary)
         button.addIcon("checkmark", position: .leading)
@@ -114,14 +110,7 @@ class ViewController: UIViewController {
         ])
         lastView = habitCard
 
-        contentView.addSubview(aiCard)
-        NSLayoutConstraint.activate([
-            aiCard.topAnchor.constraint(equalTo: lastView!.bottomAnchor, constant: spacing),
-            aiCard.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            aiCard.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            aiCard.heightAnchor.constraint(equalToConstant: 110)
-        ])
-        lastView = aiCard
+        
 
         // 3. CustomButton
         contentView.addSubview(button)

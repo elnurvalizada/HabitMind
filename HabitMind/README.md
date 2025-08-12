@@ -22,8 +22,7 @@ HabitMind/
 │   ├── CustomTextField.swift      # Input fields with validation
 │   ├── DaySelectorView.swift      # Day of week selector
 │   ├── TimePickerView.swift       # Time selection
-│   ├── EmptyStateView.swift       # Empty state displays
-│   └── AISuggestionCardView.swift # AI recommendation cards
+│   └── EmptyStateView.swift       # Empty state displays
 ├── Model/                         # Data models
 │   └── Habit.swift               # Core habit data structure
 └── Managers/                      # Business logic

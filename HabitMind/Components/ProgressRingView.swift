@@ -34,13 +34,7 @@ class ProgressRingView: UIView {
     private var gradientColors: [UIColor] = [UIColor.systemBlue, UIColor.systemGreen]
     private var shadowColor: UIColor = UIColor.systemBlue.withAlphaComponent(0.25)
     private var currentPercent: Int = 0
-    // Animation state for label
-    private var labelAnimationStart: Double = 0
-    private var labelAnimationEnd: Double = 0
-    private var labelAnimationDuration: Double = 0
-    private var labelAnimationDisplayLink: CADisplayLink?
-    private var labelAnimationLastValue: Int = 0
-    private var labelAnimationStartTime: CFTimeInterval = 0
+    // (Removed) Label animation state – label now updates instantly
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,6 +101,9 @@ class ProgressRingView: UIView {
         let clamped = max(0, min(100, percent))
         let fromValue = progressLayer.presentation()?.strokeEnd ?? progressLayer.strokeEnd
         let toValue = CGFloat(clamped) / 100.0
+        // Always update label instantly (no label animation)
+        percentLabel.text = "\(clamped)%"
+
         if animated {
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             animation.fromValue = fromValue
@@ -115,10 +112,8 @@ class ProgressRingView: UIView {
             animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
             progressLayer.strokeEnd = toValue
             progressLayer.add(animation, forKey: "progress")
-            animateLabel(from: currentPercent, to: clamped, duration: animationDuration)
         } else {
             progressLayer.strokeEnd = toValue
-            percentLabel.text = "\(clamped)%"
         }
         // Pulse on 100%
         if clamped == 100 && animated {
@@ -132,30 +127,7 @@ class ProgressRingView: UIView {
         }
         currentPercent = clamped
     }
-    private func animateLabel(from: Int, to: Int, duration: Double) {
-        labelAnimationStart = Double(from)
-        labelAnimationEnd = Double(to)
-        labelAnimationDuration = duration
-        labelAnimationLastValue = from
-        labelAnimationDisplayLink?.invalidate()
-        labelAnimationDisplayLink = CADisplayLink(target: self, selector: #selector(updateLabel))
-        labelAnimationDisplayLink?.add(to: .main, forMode: .default)
-        labelAnimationStartTime = CACurrentMediaTime()
-    }
-    @objc private func updateLabel() {
-        let elapsed = CACurrentMediaTime() - labelAnimationStartTime
-        let percent = min(1, elapsed / labelAnimationDuration)
-        let value = Int(labelAnimationStart + (labelAnimationEnd - labelAnimationStart) * percent)
-        if value != labelAnimationLastValue {
-            percentLabel.text = "\(value)%"
-            labelAnimationLastValue = value
-        }
-        if percent >= 1 {
-            percentLabel.text = "\(Int(labelAnimationEnd))%"
-            labelAnimationDisplayLink?.invalidate()
-            labelAnimationDisplayLink = nil
-        }
-    }
+    // (Removed) animateLabel and updateLabel – label updates are immediate
     // MARK: - Public Methods
     func setProgressWithPercentage(_ percentage: Int, subtitle: String? = nil, animated: Bool = true) {
         updateProgress(animated: animated, to: percentage)

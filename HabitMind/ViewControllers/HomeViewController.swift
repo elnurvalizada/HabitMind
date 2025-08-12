@@ -73,11 +73,7 @@ class HomeViewController: RootViewController {
         return view
     }()
     
-    private let aiSuggestionCard: AISuggestionCardView = {
-        let card = AISuggestionCardView()
-        card.translatesAutoresizingMaskIntoConstraints = false
-        return card
-    }()
+    
     
     // MARK: - Properties
     private var todayHabits: [Habit] = []
@@ -97,12 +93,7 @@ class HomeViewController: RootViewController {
         updateUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.aiSuggestionCard.animateToCompactMode()
-        }
-    }
+    
     
     // MARK: - Setup
     private func setupUI() {
@@ -123,7 +114,6 @@ class HomeViewController: RootViewController {
         contentView.addSubview(headerView)
         headerView.addSubview(headerStack)
         headerStack.addArrangedSubview(greetingLabel)
-        headerStack.addArrangedSubview(aiSuggestionCard)
         headerView.addSubview(dateLabel)
         
         contentView.addSubview(progressSummaryCard)
@@ -131,8 +121,7 @@ class HomeViewController: RootViewController {
         contentView.addSubview(habitsStackView)
         contentView.addSubview(emptyStateView)
         
-        // Set up AI card delegate
-        aiSuggestionCard.delegate = self
+        
     }
     
     private func setupConstraints() {
@@ -180,7 +169,6 @@ class HomeViewController: RootViewController {
         updateProgressView()
         updateHabitsList()
         updateEmptyState()
-        updateAISuggestion()
     }
     
     private func updateProgressView() {
@@ -212,14 +200,7 @@ class HomeViewController: RootViewController {
         emptyStateView.isHidden = !todayHabits.isEmpty
     }
     
-    private func updateAISuggestion() {
-        // Use a short suggestion for the top-right box
-        if todayHabits.isEmpty {
-            aiSuggestionCard.configure(text: "Try a new habit!")
-        } else {
-            aiSuggestionCard.configure(text: "AI Suggest...")
-        }
-    }
+    
     
     private func showAISuggestion() {
         let suggestion = AIManager.shared.getHabitSuggestion(
@@ -261,7 +242,6 @@ class HomeViewController: RootViewController {
     private func handleHabitCompletion(_ habit: Habit, isCompleted: Bool) {
         HabitDataManager.shared.updateHabitCompletion(habit, isCompleted: isCompleted)
         updateProgressView()
-        updateAISuggestion()
     }
 }
 
@@ -272,8 +252,4 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController: AISuggestionCardViewDelegate {
-    func aiCardTapped() {
-        showAISuggestion()
-    }
-} 
+ 
